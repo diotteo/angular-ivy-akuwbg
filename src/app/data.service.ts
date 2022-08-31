@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { map, Observable, of, throwError } from 'rxjs';
+import { map, Observable, of, throwError, delay } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { DataDocument } from './document';
@@ -25,6 +25,7 @@ export class DataService {
     };
     return of(data)
         .pipe(
+        delay(2000),
         map((data: any) => {
           var array: PeriodicElement[] = [];
           for (var row of (<any>data).rows) {
